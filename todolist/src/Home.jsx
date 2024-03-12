@@ -1,6 +1,7 @@
  import React ,{ useEffect, useState }from 'react'
 import Create from './Create'
 import axios from 'axios'
+import { BsCircleFill,BsFillCheckCircleFill,BsFillTrashFill } from "react-icons/bs";
 
  function Home() {
     const [todos, setTodos] = useState([])
@@ -9,10 +10,15 @@ import axios from 'axios'
       .then(result => setTodos(result.data))
       .catch(err => console.log(err))
     },[])
+
+    const handleEdit =() => {
+
+    }
+    
    return (
      <div className='home'>
         <h2>Todo List</h2>
-        <Create/>
+        <Create/> 
         <br />
         {
             todos.length === 0 
@@ -21,7 +27,13 @@ import axios from 'axios'
             :
             todos.map(todo =>(
                 <div className='task'>
+                  <div className='checkbox' onClick={handleEdit}>
+                  <BsCircleFill className='icon'/>
                     <p>{todo.task}</p>
+                </div>
+                <div>
+                  <span><BsFillTrashFill className='icon'/></span>
+                </div>
                 </div>
             ))
         }
@@ -29,4 +41,4 @@ import axios from 'axios'
    )
  }
  
- export default
+ export default Home
