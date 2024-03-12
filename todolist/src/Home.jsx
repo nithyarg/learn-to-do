@@ -1,7 +1,7 @@
  import React ,{ useEffect, useState }from 'react'
 import Create from './Create'
 import axios from 'axios'
- 
+
  function Home() {
     const [todos, setTodos] = useState([])
     useEffect(() =>{
@@ -29,4 +29,4 @@ import axios from 'axios'
    )
  }
  
- export default Home
+ export default
