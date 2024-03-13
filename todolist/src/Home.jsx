@@ -11,8 +11,10 @@ import { BsCircleFill,BsFillCheckCircleFill,BsFillTrashFill } from "react-icons/
       .catch(err => console.log(err))
     },[])
 
-    const handleEdit =() => {
-
+    const handleEdit =(id) => {
+      axios.put('http://localhost:3001/update'+id)
+      .then(result => console.log(result))
+      .catch(err => console.log(err))  
     }
     
    return (
@@ -27,9 +29,12 @@ import { BsCircleFill,BsFillCheckCircleFill,BsFillTrashFill } from "react-icons/
             :
             todos.map(todo =>(
                 <div className='task'>
-                  <div className='checkbox' onClick={handleEdit}>
-                  <BsCircleFill className='icon'/>
-                    <p>{todo.task}</p>
+                  <div className='checkbox' onClick={() =>handleEdit(todo._id)}>
+                    {todo.done ? 
+                       <BsFillCheckCircleFill className='icon'></BsFillCheckCircleFill>
+                    :<BsCircleFill className='icon'/>
+                  }
+                    <p className={todo.done ? "line_through" : ""}>{todo.task}</p>
                 </div>
                 <div>
                   <span><BsFillTrashFill className='icon'/></span>
