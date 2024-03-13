@@ -13,8 +13,19 @@ import { BsCircleFill,BsFillCheckCircleFill,BsFillTrashFill } from "react-icons/
 
     const handleEdit =(id) => {
       axios.put('http://localhost:3001/update'+id)
-      .then(result => console.log(result))
+      .then(result => {
+        location.reload()
+      })
       .catch(err => console.log(err))  
+    }
+
+    const handleDelete =(id) => {
+      axios.delete('http://localhost:3001/delete'+id)
+      .then(result => {
+        location.reload()
+      })
+      .catch(err => console.log(err))  
+     
     }
     
    return (
@@ -37,7 +48,8 @@ import { BsCircleFill,BsFillCheckCircleFill,BsFillTrashFill } from "react-icons/
                     <p className={todo.done ? "line_through" : ""}>{todo.task}</p>
                 </div>
                 <div>
-                  <span><BsFillTrashFill className='icon'/></span>
+                  <span><BsFillTrashFill className='icon' 
+                  onClick={() => handleDelete (todo._id)}/></span>
                 </div>
                 </div>
             ))
